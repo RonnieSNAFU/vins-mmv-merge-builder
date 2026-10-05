@@ -30,7 +30,8 @@ was verified for. It verifies its own output before writing anything. Every deci
 
 1. Download Elden Vins Nightreign (Nexus mod 287) and More Map Variations 2.1.8-hotfix3 & Weapons (Nexus mod 578) from
    their Nexus pages. You can leave them as archives or extract them.
-2. Download a builder release, extract it anywhere and double-click **`Build Merged Mod.bat`**.
+2. Download `VinsMMV-Merge-Builder-<version>.zip` from the
+   [latest release](https://github.com/RonnieSNAFU/vins-mmv-merge-builder/releases/latest), extract it anywhere and double-click **`Build Merged Mod.bat`**.
 3. The builder finds Steam, Nightreign, Elden Ring and both mods by itself, or asks you for them. It builds the merged
    mod in about 20 minutes and offers to launch the game through Mod Engine 3.
 
