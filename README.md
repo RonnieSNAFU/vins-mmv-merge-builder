@@ -45,9 +45,13 @@ troubleshooting. **Back up your save first** (`%APPDATA%\Nightreign\<SteamID>\`)
 
 Requirements:
 
-- Windows x64 and the **.NET 10 SDK**. If `dotnet` isn't on your PATH, `build-release.ps1` also accepts an SDK in
-  `<repo>\dotnet\`.
-- git, for the submodules.
+- Windows x64 and the **.NET 10 SDK** (the SDK, not just the runtime). Download the x64 installer from Microsoft's
+  official page: <https://dotnet.microsoft.com/download/dotnet/10.0>. You can also install it from a terminal with
+  `winget install Microsoft.DotNet.SDK.10`. Check it with `dotnet --version`, which should print 10.0.x. If `dotnet`
+  isn't on your PATH, `build-release.ps1` also accepts an SDK in `<repo>\dotnet\`.
+- git, for the submodules (<https://git-scm.com/download/win>).
+
+Players using a release don't need any of this: the release exe is self-contained.
 
 ```powershell
 git clone --recurse-submodules https://github.com/RonnieSNAFU/vins-mmv-merge-builder.git
