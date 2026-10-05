@@ -87,7 +87,7 @@ foreach ($f in 'README.txt', 'Collect Crash Report.bat', 'Collect-CrashReport.ps
 $srcZip = Join-Path $dist "stage\source-$version.zip"
 Run git @('-C', $Repo, 'archive', '--format=zip', '-o', $srcZip, 'HEAD', '--', '.gitignore', 'src/NRMerge', 'src/LuaNorm', 'tests',
     'patches', 'merge', 'data', 'dist-src/builder', 'dist-src/README.txt', 'dist-src/Collect Crash Report.bat',
-    'dist-src/Collect-CrashReport.ps1', 'docs/MAINTENANCE.md', 'docs/BUILDER_BRIEF.md')
+    'dist-src/Collect-CrashReport.ps1', 'docs/MAINTENANCE.md', 'README.md', 'LICENSE', '.gitmodules')
 [System.IO.Compression.ZipFile]::ExtractToDirectory($srcZip, (Join-Path $stage 'source'))
 Remove-Item $srcZip
 $sources = @"
