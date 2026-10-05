@@ -1,0 +1,35 @@
+{
+  "format": "nrmerge-airules/1",
+  "rules": {
+    "Goal.Activate": {
+      "take": "ev",
+      "sideSha256": "f85ea31b67d2c0743d7e2817dfd0a3283841a6f3a61948afb5ee7841c38bfad0",
+      "edits": []
+    },
+    "SpiralGuardianOmagariken525010_Act05": {
+      "take": "mmv",
+      "sideSha256": "95543ac1ef89b672be2cad12f0f347e9a35ebeb64fc2c3eeda792bab6b15df4e",
+      "edits": []
+    },
+    "SpiralGuardianOmagariken525010_Act06": {
+      "take": "mmv",
+      "sideSha256": "ebbbbd2cae14fbc2eb6f111b5278c5a155b881f578f637c33bf31886e3a66290",
+      "edits": []
+    },
+    "SpiralGuardianOmagariken525010_Act08": {
+      "take": "mmv",
+      "sideSha256": "9f04754474706f900673fbfd32ff01ca419053fde00466a8efcc745a3222897e",
+      "edits": []
+    },
+    "SpiralGuardianOmagariken525010_Act09": {
+      "take": "mmv",
+      "sideSha256": "77028f8aa5a36d39cb366c25a52472728357d80544cb3a98c761f4831426501d",
+      "edits": []
+    },
+    "Goal.Interrupt": {
+      "take": "ev",
+      "sideSha256": "8a9ce5f17df948e0b5b1d5f461c7c2262672c1a11aaae74789566800ad09104c",
+      "edits": []
+    }
+  }
+}

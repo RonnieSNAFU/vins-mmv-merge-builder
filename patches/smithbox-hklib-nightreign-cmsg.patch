@@ -1,0 +1,46 @@
+diff --git a/src/Havok/HKLib.Reflection/hk2018/Autogen/CustomManualSelectorGeneratorData.cs b/src/Havok/HKLib.Reflection/hk2018/Autogen/CustomManualSelectorGeneratorData.cs
+index 52e66894..12ebb88c 100644
+--- a/src/Havok/HKLib.Reflection/hk2018/Autogen/CustomManualSelectorGeneratorData.cs
++++ b/src/Havok/HKLib.Reflection/hk2018/Autogen/CustomManualSelectorGeneratorData.cs
+@@ -114,6 +114,13 @@ internal class CustomManualSelectorGeneratorData : HavokData<CustomManualSelecto
+                 value = castValue;
+                 return true;
+             }
++            case "m_isBasePoseAnim":
++            case "isBasePoseAnim":
++            {
++                if (instance.m_isBasePoseAnim is not TGet castValue) return false;
++                value = castValue;
++                return true;
++            }
+             case "m_changeTypeOfSelectedIndexAfterActivate":
+             case "changeTypeOfSelectedIndexAfterActivate":
+             {
+@@ -291,6 +298,13 @@ internal class CustomManualSelectorGeneratorData : HavokData<CustomManualSelecto
+                 instance.m_enableTae = castValue;
+                 return true;
+             }
++            case "m_isBasePoseAnim":
++            case "isBasePoseAnim":
++            {
++                if (value is not bool castValue) return false;
++                instance.m_isBasePoseAnim = castValue;
++                return true;
++            }
+             case "m_changeTypeOfSelectedIndexAfterActivate":
+             case "changeTypeOfSelectedIndexAfterActivate":
+             {
+diff --git a/src/Havok/HKLib/hk2018/Autogen/CustomManualSelectorGenerator.cs b/src/Havok/HKLib/hk2018/Autogen/CustomManualSelectorGenerator.cs
+index 59ce42d6..dd755edf 100644
+--- a/src/Havok/HKLib/hk2018/Autogen/CustomManualSelectorGenerator.cs
++++ b/src/Havok/HKLib/hk2018/Autogen/CustomManualSelectorGenerator.cs
+@@ -28,6 +28,9 @@ public class CustomManualSelectorGenerator : hkbGenerator, hkbVerifiable, ICusto
+ 
+     public CustomManualSelectorGenerator.RideSync m_rideSync;
+ 
++    // Nightreign: serialized bool at offset 198 (NR merge patch)
++    public bool m_isBasePoseAnim;
++
+ 
+     public enum ChangeTypeOfSelectedIndexAfterActivate : int
+     {

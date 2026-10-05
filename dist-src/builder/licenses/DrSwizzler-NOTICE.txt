@@ -1,0 +1,6 @@
+DrSwizzler 1.1.1 (NuGet package by Shadowth117, https://github.com/Shadowth117/DrSwizzler)
+
+DrSwizzler is a dependency of Smithbox's SoulsFormats (texture swizzling). It is embedded in NRMerge.exe only because
+SoulsFormats references it; the builder never swizzles textures. The package and its repository publish no licence file
+or licence expression (checked 2026-10-04). It is redistributed here in the same way Smithbox's own releases redistribute
+it. If you are the author and object, please open an issue and the dependency will be removed.

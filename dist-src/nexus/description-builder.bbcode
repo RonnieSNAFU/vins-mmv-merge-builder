@@ -1,0 +1,116 @@
+[size=5][b]Elden Vins x More Map Variations: Merge Builder[/b][/size]
+[i]Beta. Testers wanted![/i]
+
+This tool builds [b]Elden Vins Nightreign[/b] and [b]More Map Variations 2.1.8-hotfix3 & Weapons[/b] into one Mod Engine 3 profile, on your own PC. The two mods can't normally run together because they change the same game files (regulation, maps, events, enemy and player animations, behaviors, AI and scripts). The builder does a real merge of those files, not a load order trick.
+
+[b]This download contains no files from either mod and no game files.[/b] You download both mods from their own pages, and the builder reads them together with your game install and writes the merged mod. Mod authors keep their downloads and their download counts.
+
+[list]
+[*]Everything from both mods: MMV's map variations, extra bosses and weapons, together with Elden Vins' balance and movesets.
+[*][b]Elden Vins scaling on MMV's content:[/b] the enemy poise, HP and AI rules from Elden Vins are applied to MMV's new enemies.
+[*]MMV's new weapons use [b]Elden Vins' faster movesets[/b] for their weapon type when they use a standard moveset. MMV's unique movesets (DS3 and SOTE ports) are kept as they are.
+[*]Where both mods changed the same thing, combat and balance follow Elden Vins, and world, maps and drops follow MMV. Every decision is listed in [b]MERGE_REPORT.md[/b] and the merge-journal folder that the builder writes next to the mod.
+[*]The result is identical, file for file, to the merge we tested.
+[/list]
+
+[size=4][b]Requirements[/b][/size]
+[list]
+[*]Windows 10 or 11, 64-bit. Nothing else to install: no .NET, Python or git.
+[*]Elden Ring Nightreign, updated to version [b]1.03.5[/b] (Steam).
+[*][url=https://www.nexusmods.com/eldenringnightreign/mods/287]Elden Vins Nightreign[/url] (Nexus mod 287).
+[*][url=https://www.nexusmods.com/eldenringnightreign/mods/578]More Map Variations 2.1.8-hotfix3 & Weapons[/url] (Nexus mod 578).
+[*]About 12 GB of free disk space and 20 to 30 minutes for the build.
+[*]Internet during the first build (three small files are downloaded from GitHub, see below).
+[*]Optional but recommended: [b]Elden Ring 1.16.1[/b] installed through Steam (see "Without Elden Ring").
+[*][url=https://github.com/garyttierney/me3]Mod Engine 3[/url] to play. The builder offers to install it if you don't have it.
+[/list]
+
+[size=4][b]Step 1: Download both mods[/b][/size]
+[list=1]
+[*]Download [b]Elden Vins Nightreign[/b] from its Files tab.
+[*]Download [b]More Map Variations 2.1.8-hotfix3 & Weapons[/b] from its Files tab. It must be exactly this version.
+[*]You can leave both as downloaded archives (.zip, .7z or .rar) in your Downloads folder, or extract them anywhere, for example into the Nightreign game folder. You do not have to install them.
+[/list]
+
+[size=4][b]Step 2: Download the builder[/b][/size]
+Download the builder from the Files tab of this page and extract it to any folder.
+
+[size=4][b]Step 3: Double-click "Build Merged Mod.bat"[/b][/size]
+[list=1]
+[*]Back up your saves first: copy the folder [b]%APPDATA%\Nightreign[/b] somewhere safe. (The builder also copies the Elden Vins save into a backup-before-merge folder.)
+[*]Double-click [b]Build Merged Mod.bat[/b]. The builder finds Steam, Nightreign, Elden Ring and both mod downloads by itself (Nightreign folder, Downloads, Desktop, Documents and every Steam library). If it can't decide, a window asks you to pick the folder or archive.
+[*]Both mods are checked file by file against the exact versions this merge was made for. If a mod was updated since, the builder stops and tells you which one.
+[*]The build takes about 20 minutes. The builder checks its own result before it writes the merged mod.
+[/list]
+
+[size=4][b]Step 4: Install Mod Engine 3 when offered (optional)[/b][/size]
+If Mod Engine 3 isn't installed, the builder asks whether to download and run the official installer from the [url=https://github.com/garyttierney/me3/releases]Mod Engine 3 releases page[/url]. Answer [b]y[/b] to install it now, or [b]n[/b] to install it yourself later. Make sure Steam is running and Nightreign has been started at least once without mods.
+
+[size=4][b]Step 5: Launch[/b][/size]
+[list=1]
+[*]At the end the builder opens the output folder, by default [b]<Nightreign folder>\Elden Vins with more map variations[/b], and asks whether to start the game with the merged profile now.
+[*]Later, double-click [b]Elden Vins with more map variations.me3[/b] in that folder, or run: [i]me3 launch -p "Elden Vins with more map variations.me3"[/i]
+[*]Do [b]not[/b] run Elden Vins or More Map Variations at the same time. The merged profile already contains both.
+[/list]
+
+[size=4][b]Without Elden Ring[/b][/size]
+Elden Vins ports content from Elden Ring (enemies, animations, behaviors, regulation rows). With Elden Ring 1.16.1 installed, the builder uses those Elden Ring originals as the common base, and the result is the tested merge.
+
+You can build without Elden Ring too. Then the decisions that needed an Elden Ring original fall back to Elden Vins' side, or to a merge without a base. We measured it on the 3501 files of the merged mod:
+[list]
+[*][b]3407[/b] files are identical to the tested merge.
+[*][b]61[/b] files have the same content but different compression (Nightreign's Oodle library is used instead of Elden Ring's).
+[*][b]33[/b] files differ in content: regulation.bin (26 rows added by both mods keep shared IDs instead of being moved), 17 enemy animation or behavior files and 3 weapon parts merged without an Elden Ring base, the player animations (c0000.anibnd), the 473000 AI script (Elden Vins' version is kept, so MMV's changes to it are lost), and 10 files whose MMV references are not re-pointed because those 26 rows weren't moved.
+[/list]
+The builder tells you at the start and at the end, writes it into VERSION.txt, and lists every fallback in merge-journal\no-eldenring.tsv. Please mention it when you report a bug.
+
+[size=4][b]Downloads during the build[/b][/size]
+These files aren't ours to share, so the builder downloads them from GitHub at fixed versions and checks each one by SHA-256: Nightreign's 1.03.4 regulation.bin (Smithbox repository, the base Elden Vins was made from), the c0000.hks base (El-Fonz0's EldenRingNightreignHKS) and DarkScript3's event definitions. They are cached, so later builds work offline. On a PC without internet, run the builder with [i]--cache-dir[/i] and a folder holding those files; the error message names the exact links.
+
+[size=4][b]Online and saves[/b][/size]
+[list]
+[*]Online play uses the community server [b]nightreign.fs-emu.net[/b] on its own shard, [b]VINSMMV[/b]. You only match with players who use this same merge.
+[*]The mod uses Elden Vins' separate save file (NR0000.CL_SAVE, through the server redirector), so your normal save isn't touched. Back up your saves anyway.
+[/list]
+
+[size=4][b]Optional: forced Deep of Night[/b][/size]
+Elden Vins' profile loads nighter.dll to force Deep of Night, but that DLL isn't part of the Elden Vins download. If you have it, copy it into the merged mod's [b]mod\dll[/b] folder. Everything else works without it, and Mod Engine 3 just shows a harmless warning about the missing file.
+
+[size=4][b]Troubleshooting[/b][/size]
+[list]
+[*][b]"expected version":[/b] one of the mods or the game isn't the version this merge was made for. Download the version named in the message.
+[*][b]Folders swapped:[/b] if the two mods were given the wrong way round, the builder notices and fixes it itself.
+[*][b]"output folder is not empty":[/b] delete the previous merged build first, or pass [i]--out "<new folder>"[/i] to Build Merged Mod.bat.
+[*][b]Antivirus:[/b] NRMerge.exe is a self-extracting .NET program. On first start it unpacks two helper DLLs (Lua 5.0 and zstd) to %TEMP%\.net\NRMerge.
+[*]README.txt in the builder lists every option.
+[/list]
+
+[size=4][b]Reporting bugs and crashes[/b][/size]
+This is a beta. The merge has been checked by tooling and a full test run, but every boss variant and weapon can only be checked in play.
+[list=1]
+[*]Right after the problem, double-click [b]Collect Crash Report.bat[/b] in the merged mod folder.
+[*]It saves a file called [i]VinsMMV-crash-report-<date>.zip[/i] on your Desktop, with the Mod Engine 3 logs, the mod's DLL logs, Windows crash records and basic PC info. Your Windows user name, PC name and Steam ID are removed. A crash dump is only added if you say yes. Nothing is uploaded automatically.
+[*]Open a post in the [b]Bugs[/b] tab: say what you were doing (map, boss, weapon, character), whether it happens again, and whether you built with or without Elden Ring, and attach the zip.
+[/list]
+
+[size=4][b]Known limitations[/b][/size]
+[list]
+[*]Works only with the exact mod versions named above. When Elden Vins or MMV update, the builder needs an update too.
+[*]In languages other than English, MMV's new items and text show in English.
+[*]Where both mods changed the same visual effect or animation timing, Elden Vins' version is used.
+[*]See MERGE_REPORT.md for every judgement call made during the merge.
+[/list]
+
+[size=4][b]Licence[/b][/size]
+The builder is free software under the GNU GPL v3; its full source code is included in the download. It uses Smithbox (SoulsFormats, HKLib, Andre), DSLuaDecompiler and Lua 5.0, SharpCompress and the .NET runtime; licenses\THIRD-PARTY-NOTICES.txt lists them all.
+
+[size=4][b]Credits[/b][/size]
+[list]
+[*][url=https://www.nexusmods.com/eldenringnightreign/mods/287]Elden Vins Nightreign[/url] by mayk
+[*][url=https://www.nexusmods.com/eldenringnightreign/mods/578]More Map Variations[/url] by Team Daybreak (Dragonblade9630)
+[*]Custom server redirector by Church Guard; custom_drop_fxrs and NightreignFPSFOV by their authors
+[*][url=https://github.com/vawser/Smithbox]Smithbox[/url] (vawser, Katalash, Meowmaritus and contributors), HKLib (The12thAvenger), [url=https://github.com/katalash/DSLuaDecompiler]DSLuaDecompiler[/url] (katalash)
+[*]c0000.hks base: [url=https://github.com/El-Fonz0/EldenRingNightreignHKS]El-Fonz0[/url]; event definitions: [url=https://github.com/AinTunez/DarkScript3]DarkScript3[/url] (AinTunez)
+[*][url=https://github.com/garyttierney/me3]Mod Engine 3[/url] by garyttierney and contributors
+[*]All credit for the content goes to the original authors.
+[/list]

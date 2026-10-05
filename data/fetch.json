@@ -1,0 +1,20 @@
+{
+  "nr-regulation-1.03.4": {
+    "url": "https://raw.githubusercontent.com/vawser/Smithbox/cbd477a8fd6d436b3e011c8548e1de8fd8876918/src/Smithbox.Data/Assets/PARAM/NR/Regulations/1.03.4%20(10340000)/regulation.bin",
+    "sha256": "776f1741ab8bf80c2229e109a826973ad2f4c3298699ff4ee0fe36fbe3f2a05e",
+    "normalize": "none",
+    "file": "nr-regulation-1.03.4-10340000.bin"
+  },
+  "c0000-hks-base-197b182": {
+    "url": "https://raw.githubusercontent.com/El-Fonz0/EldenRingNightreignHKS/197b182e391f977148a5f6925a39deaa81e7ada6/c0000.hks",
+    "sha256": "ad599c44ba01e451265903ba52fe55b33aa9bdb19cc67fb96cfe9ded84ae03f3",
+    "normalize": "crlf-to-lf",
+    "file": "c0000_base_197b182.hks"
+  },
+  "nr-emedf": {
+    "url": "https://raw.githubusercontent.com/AinTunez/DarkScript3/4b570f513a58075f47e0d47645adc054882b209f/DarkScript3/Resources/nr-common.emedf.json",
+    "sha256": "6323d7c5f806a4b32e88e75c065c53b513887529d41aecf3fb7d66e77cf56344",
+    "normalize": "none",
+    "file": "nr-common.emedf.json"
+  }
+}

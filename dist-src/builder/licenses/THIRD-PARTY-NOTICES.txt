@@ -1,0 +1,49 @@
+VinsMMV Merge Builder: licences and third-party notices
+=======================================================
+
+The builder (NRMerge.exe, Build Merged Mod.bat, its data and scripts) is free software released under the
+GNU General Public License version 3 (LICENSE.txt, same text as GPL-3.0.txt here), because it links Smithbox's
+SoulsFormats, which is GPLv3. The complete source code of this release is in the source\ folder; SOURCES.txt pins the
+upstream commits it is built from.
+
+NRMerge.exe is a self-contained single-file .NET program. Embedded in it:
+
+Component                                   Licence          File
+------------------------------------------  ---------------  ------------------------------------------------
+NRMerge (our merge and build code)          GPL-3.0          GPL-3.0.txt
+SoulsFormats (Smithbox Andre fork)          GPL-3.0          GPL-3.0.txt
+Smithbox: Andre.Core/Formats/IO, Havok       MIT              Smithbox-MIT.txt
+  .Shared (vawser/Smithbox @ cbd477a8)
+HKLib (Havok.HKLib, .Reflection,             MIT              HKLib-MIT.txt
+  .Serialization; + our Nightreign patch)
+DSLuaDecompiler: LuaCompiler,                MIT              DSLuaDecompiler-MIT.txt
+  LuaDecompilerCore (katalash @ c27340ab)
+Lua 5.0.2 (lua502.dll, native)              MIT              Lua-5.0-MIT.txt
+SharpCompress 0.50.4                        MIT              SharpCompress-MIT.txt
+BouncyCastle.Cryptography 2.6.2             MIT              BouncyCastle-MIT.txt
+CommunityToolkit.HighPerformance 8.4.2      MIT              CommunityToolkit-MIT.txt
+DotNext, DotNext.IO, DotNext.Unsafe 6.3.0   MIT              DotNext-MIT.txt
+ZstdNet 1.5.7                               BSD-3-Clause     ZstdNet-BSD-3-Clause.txt
+zstd (libzstd.dll, native, from ZstdNet)    BSD              zstd-BSD.txt
+Microsoft.Extensions.* 10.0.9,              MIT              dotnet-runtime-MIT.txt,
+  System.IO.Hashing 10.0.7                                   dotnet-runtime-THIRD-PARTY-NOTICES.txt
+.NET 10.0.12 runtime (Microsoft.NETCore.App) MIT             dotnet-runtime-MIT.txt,
+                                                             dotnet-runtime-THIRD-PARTY-NOTICES.txt
+.NET 10.0.12 Windows Desktop (WinForms,     MIT              dotnet-windowsdesktop-MIT.txt
+  used for the folder picker)
+DrSwizzler 1.1.1 (SoulsFormats dependency)  none published   DrSwizzler-NOTICE.txt
+
+Shipped next to the exe:
+- Res\HavokTypeRegistry*.xml: HKLib's Havok type registry (MIT, HKLib-MIT.txt).
+- data\smithbox\: Smithbox param definitions, Param Meta, Param Type Info and the Nightreign TAE template
+  (MIT, Smithbox-MIT.txt). This is community reverse-engineering metadata, not game data.
+- data\andre\: Andre's archive file-name dictionaries for Elden Ring and Nightreign (MIT, Smithbox-MIT.txt).
+- data\*.json, data\*.tsv, data\merge\, data\templates\: ours (GPL-3.0). The manifests hold only file names, sizes
+  and SHA-256 hashes; the merge rules hold which side wins per AI function plus 5 short lines.
+
+NOT shipped (taken from your PC or downloaded at build time, checked by SHA-256):
+- Elden Vins Nightreign and More Map Variations 2.1.8-hotfix3 & Weapons: you download them from their Nexus pages.
+- Nightreign and Elden Ring game files and Oodle (oo2core_*.dll): read from your Steam installs.
+- Nightreign 1.03.4 regulation.bin (vawser/Smithbox), c0000.hks base (El-Fonz0/EldenRingNightreignHKS) and
+  nr-common.emedf.json (AinTunez/DarkScript3): downloaded from GitHub at pinned commits (see data\fetch.json).
+- Mod Engine 3 (garyttierney/me3): the builder offers to download its official installer if you do not have it.

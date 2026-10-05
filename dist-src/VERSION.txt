@@ -1,0 +1,2 @@
+Elden Vins x More Map Variations (merged) 1.0.0-beta.1
+Built 2026-10-03 from merge tool commit 4f8853c. Inputs: Elden Vins Nightreign (as downloaded 2026-03-13) + More Map Variations 2.1.8-hotfix3 & Weapons. Game: Nightreign 1.03.5 (regulation 1.03.5).

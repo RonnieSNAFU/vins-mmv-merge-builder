@@ -1,0 +1,78 @@
+diff --git a/DSLuaDecompiler/DSLuaDecompiler.csproj b/DSLuaDecompiler/DSLuaDecompiler.csproj
+index 5f48cab..ed59797 100644
+--- a/DSLuaDecompiler/DSLuaDecompiler.csproj
++++ b/DSLuaDecompiler/DSLuaDecompiler.csproj
+@@ -2,7 +2,7 @@
+ 
+   <PropertyGroup>
+     <OutputType>Exe</OutputType>
+-    <TargetFramework>net9.0</TargetFramework>
++    <TargetFramework>net10.0</TargetFramework>
+     <ImplicitUsings>enable</ImplicitUsings>
+     <Nullable>enable</Nullable>
+     <LangVersion>default</LangVersion>
+diff --git a/DecompilerTester/DecompilerTester.csproj b/DecompilerTester/DecompilerTester.csproj
+index 1e8c3f9..1b46c92 100644
+--- a/DecompilerTester/DecompilerTester.csproj
++++ b/DecompilerTester/DecompilerTester.csproj
+@@ -2,7 +2,7 @@
+ 
+     <PropertyGroup>
+         <OutputType>Exe</OutputType>
+-        <TargetFramework>net9.0</TargetFramework>
++        <TargetFramework>net10.0</TargetFramework>
+         <ImplicitUsings>enable</ImplicitUsings>
+         <Nullable>enable</Nullable>
+         <ServerGarbageCollection>true</ServerGarbageCollection>
+diff --git a/LuaCompiler/LuaCompiler.csproj b/LuaCompiler/LuaCompiler.csproj
+index 53b3c68..a97c2af 100644
+--- a/LuaCompiler/LuaCompiler.csproj
++++ b/LuaCompiler/LuaCompiler.csproj
+@@ -1,7 +1,7 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+ 
+     <PropertyGroup>
+-        <TargetFramework>net9.0</TargetFramework>
++        <TargetFramework>net10.0</TargetFramework>
+         <ImplicitUsings>enable</ImplicitUsings>
+         <Nullable>enable</Nullable>
+         <LangVersion>default</LangVersion>
+diff --git a/LuaDecompilerCore/LuaDecompilerCore.csproj b/LuaDecompilerCore/LuaDecompilerCore.csproj
+index 3730b38..0a2226d 100644
+--- a/LuaDecompilerCore/LuaDecompilerCore.csproj
++++ b/LuaDecompilerCore/LuaDecompilerCore.csproj
+@@ -1,7 +1,7 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+ 
+   <PropertyGroup>
+-    <TargetFramework>net9.0</TargetFramework>
++    <TargetFramework>net10.0</TargetFramework>
+     <LangVersion>default</LangVersion>
+     <Nullable>enable</Nullable>
+   </PropertyGroup>
+diff --git a/LuaDecompilerTestFramework/LuaDecompilerTestFramework.csproj b/LuaDecompilerTestFramework/LuaDecompilerTestFramework.csproj
+index 9659e9f..d70ef8c 100644
+--- a/LuaDecompilerTestFramework/LuaDecompilerTestFramework.csproj
++++ b/LuaDecompilerTestFramework/LuaDecompilerTestFramework.csproj
+@@ -1,7 +1,7 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+ 
+     <PropertyGroup>
+-        <TargetFramework>net9.0</TargetFramework>
++        <TargetFramework>net10.0</TargetFramework>
+         <ImplicitUsings>enable</ImplicitUsings>
+         <Nullable>enable</Nullable>
+         <LangVersion>default</LangVersion>
+diff --git a/LuaIntegrationTests/LuaIntegrationTests.csproj b/LuaIntegrationTests/LuaIntegrationTests.csproj
+index efbb1db..f464119 100644
+--- a/LuaIntegrationTests/LuaIntegrationTests.csproj
++++ b/LuaIntegrationTests/LuaIntegrationTests.csproj
+@@ -1,7 +1,7 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+ 
+     <PropertyGroup>
+-        <TargetFramework>net9.0</TargetFramework>
++        <TargetFramework>net10.0</TargetFramework>
+         <ImplicitUsings>enable</ImplicitUsings>
+         <Nullable>enable</Nullable>
+ 

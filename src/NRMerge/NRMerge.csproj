@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- builder release version: out\dist\VinsMMV-Merge-Builder-<Version>.zip -->
+    <Version>1.0.0</Version>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <NoWarn>CS8632;CS0168;CS0219</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Smithbox\src\Andre\SoulsFormats\SoulsFormats\Andre.SoulsFormats.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Andre\Andre.Formats\Andre.Formats.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Andre\Andre.IO\Andre.IO.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Andre\Andre.Core\Andre.Core.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Havok\HKLib\Havok.HKLib.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Havok\HKLib.Serialization\Havok.HKLib.Serialization.csproj" />
+    <ProjectReference Include="..\Smithbox\src\Havok\HKLib.Reflection\Havok.HKLib.Reflection.csproj" />
+    <!-- DSLuaDecompiler (katalash, MIT) at c27340a + patches/dslua-net10.patch: in-process LuaNorm (lua502.dll lands in <bin>\LuaNative\) -->
+    <ProjectReference Include="..\DSLuaDecompiler\LuaCompiler\LuaCompiler.csproj" />
+    <ProjectReference Include="..\DSLuaDecompiler\LuaDecompilerCore\LuaDecompilerCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SharpCompress" Version="0.50.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources/rulings.txt" LogicalName="rulings.txt" />
+  </ItemGroup>
+</Project>
