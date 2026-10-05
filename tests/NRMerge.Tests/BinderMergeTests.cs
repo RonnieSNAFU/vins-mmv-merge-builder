@@ -46,6 +46,23 @@ public class BinderMergeTests
         Assert.Equal(8, o.Files.Single(f => !f.Name.Contains("behaviors")).Bytes.ToArray()[0]);  // MMV-only change taken
         Assert.Equal(2, o.Files.Count);
     }
+
+    [Fact]
+    public void AnimationSetEvEmptiedButMmvFilledKeepsMmvsAnimations()
+    {
+        // EV emptied vanilla a281 (no EV weapon uses hero moveset 281); MMV's Frozen Cold Needle Invader still does
+        var dir = Directory.CreateTempSubdirectory().FullName;
+        var bas = Write(dir, "b.bnd", ("a281.tae", B(1, 1)), ("a282.tae", B(5)), ("x.fxr", B(7)));
+        var ev = Write(dir, "e.bnd", ("a281.tae", B()), ("x.fxr", B()));
+        var mmv = Write(dir, "m.bnd", ("a281.tae", B(1, 2, 3)), ("a282.tae", B(6)), ("x.fxr", B(8)));
+        var outp = Path.Combine(dir, "o.bnd");
+        Journal.Clear();
+        BinderMerge.Merge(bas, ev, mmv, outp, _ => Side.EV, "t", (key, b, e, m) => null);
+        var o = BND4.Read(File.ReadAllBytes(outp)).Files.ToDictionary(f => f.Name, f => f.Bytes.ToArray());
+        Assert.Equal(B(1, 2, 3), o["a281.tae"]);   // emptied by EV, filled by MMV -> MMV
+        Assert.Equal(B(6), o["a282.tae"]);         // removed by EV, changed by MMV -> MMV
+        Assert.Equal(B(), o["x.fxr"]);             // other entry types keep the owner rule
+    }
 }
 
 public class EntryKeyTests

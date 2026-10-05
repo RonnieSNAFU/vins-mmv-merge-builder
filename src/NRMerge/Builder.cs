@@ -126,6 +126,7 @@ public static class Builder
         ("playermerge", "merge player animations and behavior", PlayerMerge.Run),
         ("profile", "write the ME3 profile and natives", Profile.Run),
         ("noerpatch", "without Elden Ring: replay the verified build's Elden-Ring-based decisions", NoErPatch.Run),
+        ("lodparts", "low-detail parts so co-op partners see each other (EV skins installer)", LodParts.Run),
         ("verify", "verify the merged mod", Verify.Run),
     };
 

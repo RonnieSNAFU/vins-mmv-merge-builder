@@ -102,6 +102,15 @@ public static class BinderMerge
                 if (e == null) res.AddedMmv++; else res.TakenMmv++;
                 continue;
             }
+            if ((e == null || e.Length == 0) && m.Length > 0 && key.EndsWith(".tae", StringComparison.OrdinalIgnoreCase))
+            {
+                // EV emptied or removed an animation set it no longer uses; MMV's weapons/characters still play it
+                // (c0000 a281: MMV's Frozen Cold Needle Invader, hero moveset 281)
+                SetEntry(key, add: e == null);
+                res.TakenMmv++;
+                Journal.Add(area, $"{label} :: {key}", $"EV {(e == null ? "removed" : "emptied")} the animation set, MMV filled it ({m.Length} B) -> MMV");
+                continue;
+            }
             if (mergeEntry != null && e != null)
             {
                 var merged = mergeEntry(key, b, e, m);

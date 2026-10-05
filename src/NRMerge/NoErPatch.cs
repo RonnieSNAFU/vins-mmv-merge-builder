@@ -123,6 +123,8 @@ public static class NoErPatch
         long literal = 0, target = 0;
         foreach (var rel in a.Union(b, StringComparer.OrdinalIgnoreCase).Order(StringComparer.Ordinal))
         {
+            // low-detail copies of a part are written by the lodparts stage after the replay, from the replayed part
+            if (a.Contains(rel) ? LodParts.IsSkinsCopy(fullMod, rel) : LodParts.IsSkinsCopy(noerMod, rel)) continue;
             if (!a.Contains(rel)) { index.Entries.Add(new Entry { Rel = rel, Op = "delete", Pre = Sha(ReadContent(Paths.In(noerMod, rel), rel, out _)) }); continue; }
             var post = ReadContent(Paths.In(fullMod, rel), rel, out var type);
             byte[] pre = null;

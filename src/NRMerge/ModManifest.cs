@@ -274,15 +274,24 @@ public sealed class ModManifest
             toHash.Add((e, fi.FullName));
         }
         var expected = new HashSet<string>(spec.Files.Select(f => f.Path), StringComparer.OrdinalIgnoreCase);
+        var byPath = spec.Files.ToDictionary(f => f.Path, StringComparer.OrdinalIgnoreCase);
+        var skinCandidates = new List<(string rel, ManifestFile hi, string full)>();
         foreach (var rel in actual.Keys.Where(k => !expected.Contains(k)))
+        {
+            // EV's OPEN-THIS-TO-INSTALL-SKINS.bat copies every part to its low-detail (_l) name: accepted when byte-identical
+            if (LodParts.HighDetailOf(rel) is string hiRel && byPath.TryGetValue(hiRel, out var hi) && hi.Sha256 != null && actual[rel].Length == hi.Size)
+            { skinCandidates.Add((rel, hi, actual[rel].FullName)); continue; }
             (IsIgnorableExtra(rel) ? r.IgnorableExtra : r.Extra).Add(rel);
+        }
 
-        var hashes = HashAll(toHash.Select(t => (t.full, t.entry.Size)).ToList(), progress);
+        var hashes = HashAll(toHash.Select(t => (t.full, t.entry.Size)).Concat(skinCandidates.Select(c => (c.full, c.hi.Size))).ToList(), progress);
         for (int i = 0; i < toHash.Count; i++)
             if (!string.Equals(hashes[i], toHash[i].entry.Sha256, StringComparison.OrdinalIgnoreCase))
                 r.Changed.Add(toHash[i].entry.Path);
+        for (int i = 0; i < skinCandidates.Count; i++)
+            (string.Equals(hashes[toHash.Count + i], skinCandidates[i].hi.Sha256, StringComparison.OrdinalIgnoreCase) ? r.SkinsCopies : r.Extra).Add(skinCandidates[i].rel);
 
-        foreach (var l in new[] { r.Missing, r.Changed, r.Extra, r.IgnorableExtra, r.IgnorableMissing, r.IgnoredRuntime }) l.Sort(StringComparer.Ordinal);
+        foreach (var l in new[] { r.Missing, r.Changed, r.Extra, r.IgnorableExtra, r.IgnorableMissing, r.IgnoredRuntime, r.SkinsCopies }) l.Sort(StringComparer.Ordinal);
         return Diagnose(r, spec, get);
     }
 
@@ -305,7 +314,8 @@ public sealed class ModManifest
         if (miss == 0 && chg == 0 && extra == 0)
         {
             int cfg = spec.Files.Count(f => f.PresenceOnly);
-            string warn = (r.IgnorableExtra.Count > 0 ? $"; {r.IgnorableExtra.Count} unexpected non-game file(s) ignored" : "") +
+            string warn = (r.SkinsCopies.Count > 0 ? $"; skins installer copies recognised ({r.SkinsCopies.Count} low-detail part(s), not needed: the merge writes its own)" : "") +
+                          (r.IgnorableExtra.Count > 0 ? $"; {r.IgnorableExtra.Count} unexpected non-game file(s) ignored" : "") +
                           (r.IgnorableMissing.Count > 0 ? $"; {r.IgnorableMissing.Count} non-game file(s) missing (docs/readme, not needed for the merge)" : "");
             return r.Set(ModDiagnosis.Ok, $"OK: {spec.DisplayName} ({spec.Files.Count - cfg} files verified, {cfg} config files present{warn}).");
         }
@@ -391,6 +401,8 @@ public sealed class ModCheckResult
     public List<string> IgnorableExtra { get; } = new();
     /// <summary>Manifest files that are absent but cannot affect the merge (docs/readme/backups under mod/; warnings).</summary>
     public List<string> IgnorableMissing { get; } = new();
+    /// <summary>Low-detail parts EV's skins installer copied from their high-detail part (byte-identical; ignored).</summary>
+    public List<string> SkinsCopies { get; } = new();
     /// <summary>Runtime logs found and skipped.</summary>
     public List<string> IgnoredRuntime { get; } = new();
 

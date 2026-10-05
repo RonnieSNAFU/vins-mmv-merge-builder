@@ -90,6 +90,12 @@ Compare codes before you start. To check an existing merged mod folder, run
 Builds made with and without Elden Ring by the same builder version have the
 same code.
 
+Skins: co-op partners are drawn with low-detail copies of the armour and skin
+parts. Elden Vins' OPEN-THIS-TO-INSTALL-SKINS.bat makes those copies in the
+Elden Vins folder only; the builder makes them for the merged mod itself, so
+you do not need to run the .bat (an Elden Vins folder where it was run is
+accepted too, with the same result).
+
 
 Downloads during the build
 --------------------------

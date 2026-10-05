@@ -84,7 +84,9 @@ public static class Assemble
         var tsv = new StringBuilder("class\tpath\n");
         foreach (var rel in all)
         {
-            var ev = Paths.In(Paths.EV, rel);
+            // Copies made by EV's skins installer are not EV content; the lodparts stage writes the low-detail parts.
+            var ev = LodParts.IsSkinsCopy(Paths.EV, rel) ? null : Paths.In(Paths.EV, rel);
+            if (ev == null && !File.Exists(Paths.In(Paths.MMV, rel))) continue;
             var mmv = Paths.In(Paths.MMV, rel);
             var cls = Paths.HasEldenRing ? Classify(ev, mmv, Paths.BaseOf(rel)) : ClassifyWithoutEldenRing(rel, ev, mmv);
             counts[cls] = counts.GetValueOrDefault(cls) + 1;

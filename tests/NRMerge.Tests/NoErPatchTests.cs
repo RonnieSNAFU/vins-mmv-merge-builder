@@ -102,6 +102,21 @@ public class NoErPatchTests : IDisposable
     }
 
     [Fact]
+    public void LowDetailCopiesAreLeftToTheLodPartsStage()
+    {
+        var (full, noer, dir) = Setup(er: false);
+        Put(Paths.EV, "parts/wp_a_0001.partsbnd.dcx", Rnd(3000, 20));
+        Put(full, "parts/wp_a_0001.partsbnd.dcx", Rnd(3000, 21)); Put(full, "parts/wp_a_0001_l.partsbnd.dcx", Rnd(3000, 21));
+        Put(noer, "parts/wp_a_0001.partsbnd.dcx", Rnd(3000, 20)); Put(noer, "parts/wp_a_0001_l.partsbnd.dcx", Rnd(3000, 20));
+        NoErPatch.Make(full, noer, dir);
+        var rels = File.ReadAllText(Path.Combine(dir, NoErPatch.IndexName));
+        Assert.Contains("parts/wp_a_0001.partsbnd.dcx", rels);
+        Assert.DoesNotContain("wp_a_0001_l", rels);
+        File.Delete(Paths.In(noer, "parts/wp_a_0001_l.partsbnd.dcx"));   // the replay runs before lodparts writes it
+        Assert.Equal(0, NoErPatch.Run());
+    }
+
+    [Fact]
     public void RefusesAResultThatIsNotWhatTheDeltaWasMadeFrom()
     {
         var (full, noer, dir) = Setup(er: false);

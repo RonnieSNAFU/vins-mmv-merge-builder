@@ -154,6 +154,30 @@ public class ModManifestTests : IDisposable
     }
 
     [Fact]
+    public void Check_SkinsInstallerCopies_AreAccepted()
+    {
+        ModFixture.Write(fx.Ev, "mod/parts/bd_m_1000.partsbnd.dcx", "body part " + new string('b', 40));
+        var m = fx.Manifest();
+        // EV's OPEN-THIS-TO-INSTALL-SKINS.bat copies every part to its low-detail (_l) name
+        File.Copy(P(fx.Ev, "mod/parts/bd_m_1000.partsbnd.dcx"), P(fx.Ev, "mod/parts/bd_m_1000_l.partsbnd.dcx"));
+        var r = m.Check("ev", fx.Ev);
+        Assert.True(r.Ok, r.FormatReport());
+        Assert.Equal(new[] { "mod/parts/bd_m_1000_l.partsbnd.dcx" }, r.SkinsCopies);
+        Assert.Empty(r.Extra);
+    }
+
+    [Fact]
+    public void Check_LowDetailPartThatIsNotACopy_IsFatal()
+    {
+        ModFixture.Write(fx.Ev, "mod/parts/bd_m_1000.partsbnd.dcx", "body part " + new string('b', 40));
+        var m = fx.Manifest();
+        ModFixture.Write(fx.Ev, "mod/parts/bd_m_1000_l.partsbnd.dcx", "body part " + new string('c', 40)); // same size, other bytes
+        var r = m.Check("ev", fx.Ev);
+        Assert.False(r.Ok);
+        Assert.Equal(new[] { "mod/parts/bd_m_1000_l.partsbnd.dcx" }, r.Extra);
+    }
+
+    [Fact]
     public void Check_SameSizeDifferentBytes_IsChanged()
     {
         var m = fx.Manifest();

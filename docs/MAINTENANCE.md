@@ -23,7 +23,7 @@ None of these folders except `merge/` are committed (see `.gitignore`).
 Run these from the build output folder:
 
 ```
-for st in assemble regmerge mmvrewrite contentmerge emevdmerge msbmerge enemymerge playerscripts playermerge profile noerpatch verify; do
+for st in assemble regmerge mmvrewrite contentmerge emevdmerge msbmerge enemymerge playerscripts playermerge profile noerpatch lodparts verify; do
   ./NRMerge.exe $st || { echo "failed at $st"; break; }; done
 ```
 
@@ -133,6 +133,9 @@ a NuGet package, add its license to `dist-src\builder\licenses\` and a row to `T
 - MMV weapons that use standard movesets get EV's movesets.
 - Every MMV weapon rolls its skill from EV's random Ash of War table for its weapon type (catalysts, bows and other
   types EV gives no table keep MMV's skill).
+- Every merged part gets a low-detail part (`parts\X_l.partsbnd.dcx`, a hard link to the part, as EV's
+  OPEN-THIS-TO-INSTALL-SKINS.bat does); MMV's own low-detail model is kept only next to MMV's unchanged part. An EV folder
+  where the .bat was run is accepted (its byte-identical copies are recognised and ignored), so the output is the same.
 - A build without Elden Ring has the same game data as the verified build (`data\noer-patches`).
 
 Every individual judgement call is recorded as a `Ruling:` line in `src/NRMerge/Resources/rulings.txt`.
