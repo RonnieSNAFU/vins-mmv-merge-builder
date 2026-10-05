@@ -42,7 +42,7 @@ foreach ($c in @(@($smithbox, 'cbd477a8fd6d436b3e011c8548e1de8fd8876918', 'smith
     if ($LASTEXITCODE -ne 0) { throw "patches\$($c[2]) is not applied in $($c[0])" }
     Write-Host "   $($c[0]) @ $($head.Substring(0,8)) + $($c[2]) applied"
 }
-$dirty = git -C $Repo status --porcelain --untracked-files=no -- src tests patches merge data dist-src
+$dirty = git -C $Repo status --porcelain --untracked-files=no --ignore-submodules=dirty -- src tests patches merge data dist-src
 if ($dirty -and -not $AllowDirty) { throw "uncommitted changes (source\ is taken from HEAD; commit first or pass -AllowDirty):`n$($dirty -join "`n")" }
 $commit = (git -C $Repo rev-parse HEAD).Trim()
 
