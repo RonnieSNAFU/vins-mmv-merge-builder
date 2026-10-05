@@ -141,6 +141,29 @@ public static class EvRules
         _ => null,
     };
 
+    /// <summary>(wepType, vanilla swordArtsTableId, EV swordArtsTableId) of one vanilla weapon EV kept.</summary>
+    public record WeaponSkillObs(string WepType, int Vanilla, int Ev);
+
+    /// <summary>EV's random skill (Ash of War) table per weapon type: the table EV gives the weapons of that type that roll a
+    /// skill in vanilla (vanilla table != -1), when at least 80% of at least 3 such weapons get the same real table.</summary>
+    public static Dictionary<string, int> DeriveSkillPools(IEnumerable<WeaponSkillObs> obs)
+    {
+        var pools = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var g in obs.Where(o => o.Vanilla != -1).GroupBy(o => o.WepType))
+        {
+            int n = g.Count();
+            if (n < 3) continue;
+            var top = g.GroupBy(o => o.Ev).OrderByDescending(x => x.Count()).First();
+            if (top.Key != -1 && (double)top.Count() / n >= 0.8) pools[g.Key] = top.Key;
+        }
+        return pools;
+    }
+
+    /// <summary>The skill pool for a weapon type; MMV-only types borrow their analog type's pool.</summary>
+    public static int? SkillPoolFor(IReadOnlyDictionary<string, int> pools, string wepType) =>
+        pools.TryGetValue(wepType, out var t) ? t
+        : AnalogType(wepType) is string a && pools.TryGetValue(a, out var at) ? at : null;
+
     /// <summary>Weapon fields that are not part of a moveset; unique MMV types borrow these from their analog type.</summary>
     static readonly HashSet<string> WeaponWideFields = new(StringComparer.Ordinal)
     {
@@ -385,5 +408,42 @@ public static class EvRules
                 c.Count($"ev-rule {pn}.{f}", n);
             }
         }
+        ApplySkillPools(c);
+    }
+
+    /// <summary>Every weapon MMV adds rolls its skill from EV's random Ash of War table for its weapon type (EV does the same
+    /// to its own weapons, unique ones included). Types EV gives no table (catalysts, bows, ...) are left alone.</summary>
+    static void ApplySkillPools(RegMerge.Context c)
+    {
+        const string pn = "EquipParamWeapon", field = "swordArtsTableId";
+        var bp = c.EvBase.Params[pn]; var ep = c.Ev.Params[pn];
+        var bc = Cols(bp); var ec = Cols(ep);
+        var ei = ParamDiff.Index(ep);
+        var obs = new List<WeaponSkillObs>();
+        foreach (var (k, br) in ParamDiff.Index(bp))
+            if (ei.TryGetValue(k, out var er))
+                obs.Add(new(Regulation.Fmt(bc["wepType"].GetValue(br)), Convert.ToInt32(bc[field].GetValue(br)), Convert.ToInt32(ec[field].GetValue(er))));
+        var pools = DeriveSkillPools(obs);
+        foreach (var (t, id) in pools.OrderBy(x => int.Parse(x.Key)))
+            Journal.Add("ev-rules", $"{pn}.{field} skill pool wepType {t}", $"derived: EV's random Ash of War table {id}");
+
+        if (!c.Merged.TryGetValue(pn, out var p) || !c.MmvOnlyAdded.TryGetValue(pn, out var keys) || keys.Count == 0) return;
+        var cols = Cols(p);
+        var occ = new Dictionary<int, int>();
+        int n = 0;
+        foreach (var row in p.Rows)
+        {
+            occ.TryGetValue(row.ID, out var i);
+            occ[row.ID] = i + 1;
+            if (!keys.Contains(new RowKey(row.ID, i))) continue;
+            if (SkillPoolFor(pools, Regulation.Fmt(cols["wepType"].GetValue(row))) is not int pool) continue;
+            var col = cols[field];
+            var v = col.GetValue(row);
+            if (Convert.ToInt32(v) == pool) continue;
+            col.SetValue(row, ConvertLike(v, pool));
+            Journal.Add("ev-rules", $"{pn} {row.ID} {field}", $"MMV weapon gets EV's random Ash of War table: {Regulation.Fmt(v)} -> {pool} ({row.Name})");
+            n++;
+        }
+        c.Count($"ev-rule {pn}.{field} (EV skill pool for MMV weapons)", n);
     }
 }

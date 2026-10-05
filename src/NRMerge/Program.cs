@@ -93,6 +93,24 @@ switch (args[0])
         // selftest: checks lua502.dll, libzstd.dll, the Havok registry, SharpCompress and the release data folder (no game needed)
         return SelfTest.Run(Console.Out);
 
+    case "make-noer-patches":
+        // make-noer-patches <verifiedMod> <noEldenRingMod> [<outDir>]: deltas that turn the no-Elden-Ring result into the verified one
+        if (args.Length < 3) { Console.WriteLine("usage: make-noer-patches <verifiedMod> <noEldenRingMod> [<outDir>]"); return 1; }
+        NRMerge.Oodle.Prepare(BuildConfig.Dev(), Path.Combine(Path.GetTempPath(), "NRMerge", "oodle-9-6"));
+        return NoErPatch.Make(Path.GetFullPath(args[1]), Path.GetFullPath(args[2]), Path.GetFullPath(args.Length > 3 ? args[3] : NoErPatch.Dir));
+
+    case "coop-code":
+        // coop-code <mergedFolder or its mod folder>: the code co-op partners compare
+        {
+            if (args.Length < 2) { Console.WriteLine("usage: coop-code <merged mod folder>"); return 1; }
+            var m = Path.GetFullPath(args[1]);
+            if (Directory.Exists(Path.Combine(m, "mod"))) m = Path.Combine(m, "mod");
+            var oc = BuildConfig.Dev(); oc.ErGame = null; // decompressing needs only Nightreign's Oodle
+            NRMerge.Oodle.Prepare(oc, Path.Combine(Path.GetTempPath(), "NRMerge", "oodle-9"));
+            Console.WriteLine("Co-op code: " + CoopCode.Compute(m));
+            return 0;
+        }
+
     case "compare-build":
         {
             // compare-build <modA> <modB>: files that differ; for DCX files also whether the decompressed content is equal

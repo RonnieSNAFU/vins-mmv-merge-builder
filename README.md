@@ -36,8 +36,9 @@ was verified for. It verifies its own output before writing anything. Every deci
    mod in about 20 minutes and offers to launch the game through Mod Engine 3.
 
 Requirements: Windows 10/11 x64, ELDEN RING NIGHTREIGN 1.03.5 (Steam), both mods at the versions above, about 12 GB of
-free disk space, an internet connection during the first build and Mod Engine 3. Elden Ring 1.16.1 is optional but
-recommended. Without it, a few merge decisions fall back to a less precise result.
+free disk space, an internet connection during the first build and Mod Engine 3. Elden Ring 1.16.1 is optional:
+without it, the builder replays the verified build's Elden-Ring-based decisions from `data/noer-patches`, so the game
+data is the same either way.
 
 The player guide in [`dist-src/builder/README.txt`](dist-src/builder/README.txt) covers options, offline builds and
 troubleshooting. **Back up your save first** (`%APPDATA%\Nightreign\<SteamID>\`).

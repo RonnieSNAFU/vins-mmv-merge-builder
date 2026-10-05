@@ -23,7 +23,7 @@ None of these folders except `merge/` are committed (see `.gitignore`).
 Run these from the build output folder:
 
 ```
-for st in assemble regmerge mmvrewrite contentmerge emevdmerge msbmerge enemymerge playerscripts playermerge profile verify; do
+for st in assemble regmerge mmvrewrite contentmerge emevdmerge msbmerge enemymerge playerscripts playermerge profile noerpatch verify; do
   ./NRMerge.exe $st || { echo "failed at $st"; break; }; done
 ```
 
@@ -41,6 +41,9 @@ Steam IDs.
 
 - **Check versions first** (`system-info.txt`). The game must be 1.03.5 (exe 1.3.3.0), the mod version comes from
   `VERSION.txt`, and ME3 must be 0.10 or newer.
+- **Co-op problems** (a boss health bar that never goes down, one-shots, partners' skins not showing): ask every player
+  for the co-op code in `VERSION.txt` (`NRMerge.exe coop-code <merged folder>` for builds older than 1.1.0). Different
+  codes mean different game data and the host's data wins, so these are not merge bugs until the codes match.
 - **Crash on load / title screen**: look for ME3 log errors and missing files, then rerun `verify`.
 - **Crash in a specific fight or map**: find the map or character ID in `MERGE_REPORT.md` and
   `merge-journal\{maps,events,enemies,ai}.tsv`, then find the ruling that produced it (`src/NRMerge/Resources/rulings.txt`).
@@ -59,25 +62,28 @@ Reference material: <https://www.soulsmodding.com/doku.php?id=ern-refmat:main>
 1. Bump `<Version>` in `src\NRMerge\NRMerge.csproj`. If you added rulings, update `src\NRMerge\Resources\rulings.txt`
    (`export-rulings <ledger>` copies the `Ruling:` lines of a ledger file into it). The rulings are embedded into
    MERGE_REPORT.md.
-2. Commit. `build-release.ps1` refuses uncommitted changes under src/tests/patches/merge/data/dist-src, because the
+2. If the merge output changed (merge code, rules or inputs), regenerate `data\noer-patches` (see "Elden Ring optional"
+   below).
+3. Commit. `build-release.ps1` refuses uncommitted changes under src/tests/patches/merge/data/dist-src, because the
    release's `source\` folder comes from HEAD.
-3. Run `powershell -ExecutionPolicy Bypass -File dist-src\builder\build-release.ps1`. The script:
+4. Run `powershell -ExecutionPolicy Bypass -File dist-src\builder\build-release.ps1` with `dotnet` on PATH. The script:
    - checks the submodules (Smithbox @ cbd477a8, DSLuaDecompiler @ c27340ab) and that both patches are applied;
    - runs the tests and publishes;
    - stages the release and runs `NRMerge.exe selftest` with no .NET on PATH;
    - zips the result and runs the audit.
-4. The audit can also run standalone: `dist-src\builder\audit.ps1 -Zip <zip>`, with `-NightreignRoot` and
+5. The audit can also run standalone: `dist-src\builder\audit.ps1 -Zip <zip>`, with `-NightreignRoot` and
    `-EldenRingGame` or the `NRMERGE_*` variables. It fails on:
    - game/mod file types;
    - backslash entry names;
    - a missing corpus folder;
    - any entry whose SHA-256 equals a file of either mod, the installed merged mod, the game folders, the vanilla
      extracts or the pinned downloads.
-5. End-to-end check (about 20 GB of disk and 45 minutes):
+6. End-to-end check (about 20 GB of disk and 45 minutes per build):
    1. Unzip the release into a clean folder.
    2. Run `NRMerge.exe build --non-interactive --out <full> --cache-dir <cache>`.
    3. Run `NRMerge.exe compare-build <full>\mod <reference>\mod`. It must report 0 differences.
-   4. Repeat with `--no-eldenring`.
+   4. Repeat with `--no-eldenring`. `compare-build` must report 0 content differences (compression-only differences are
+      expected), and the co-op code printed at the end must equal the full build's.
 
 **Licenses:** the binary links SoulsFormats (GPLv3), so the builder is GPLv3 and ships its source. When you add or update
 a NuGet package, add its license to `dist-src\builder\licenses\` and a row to `THIRD-PARTY-NOTICES.txt`.
@@ -89,7 +95,8 @@ a NuGet package, add its license to `dist-src\builder\licenses\` and a row to `T
   2. Regenerate the input manifest with `NRMerge.exe make-mod-manifest <evFolder> <mmvFolder>`, then check it with
      `NRMerge.exe check-mods`.
 
-  The builder refuses old mod versions, so release a new builder version along with the manifest.
+  The builder refuses old mod versions, so release a new builder version along with the manifest and new
+  no-Elden-Ring patches.
 - **AI hand resolutions** (`merge\ai\<script>.lua.rules.json`): each rule names the side to start from for a
   conflicting function, that side's SHA-256 and a few line edits. If a mod changes such a function, the build stops with
   "hand resolution for <key> no longer applies". To fix it:
@@ -105,8 +112,16 @@ a NuGet package, add its license to `dist-src\builder\licenses\` and a row to `T
   4. Run `NRMerge.exe make-vanilla-manifest`.
 - **Pinned downloads** (`data\fetch.json`): change the commit in the URL and the SHA-256 together.
   `NRMerge.exe fetch <emptyDir>` proves both.
-- **Elden Ring optional**: after any merge change, re-measure the no-ER variant (`--no-eldenring` build plus
-  `compare-build`) and update the numbers in `dist-src\builder\README.txt`.
+- **Elden Ring optional** (`data\noer-patches`): after any change to the merge output, regenerate the patches that make
+  a build without Elden Ring identical in content to the verified build:
+  1. Build with Elden Ring: `NRMerge.exe build --non-interactive --out <full> --cache-dir <cache>`.
+  2. Build without it and without replay: set `NRMERGE_SKIP_NOER_PATCHES=1`, then
+     `NRMerge.exe build --non-interactive --no-eldenring --out <raw> --cache-dir <cache>`.
+  3. From the dev build, run `NRMerge.exe make-noer-patches <full>\mod <raw>\mod <repo>\data\noer-patches`. It prints
+     each file with its literal byte count (bytes found in none of EV, MMV, vanilla or the raw result). Keep that count
+     small: the patches must not become a way of shipping mod data.
+  4. Commit `data\noer-patches`. A stale patch set makes no-Elden-Ring builds stop with "no-Elden-Ring replay: ... is not
+     what this builder version produces"; it never produces different data.
 
 ## Design decisions (binding for the merge output)
 
@@ -116,5 +131,8 @@ a NuGet package, add its license to `dist-src\builder\licenses\` and a row to `T
 - EV's `nighter.dll` and `NightreignFPSFOV.dll` and MMV's `custom_drop_fxrs.dll` are kept, with one redirector (MMV's
   build).
 - MMV weapons that use standard movesets get EV's movesets.
+- Every MMV weapon rolls its skill from EV's random Ash of War table for its weapon type (catalysts, bows and other
+  types EV gives no table keep MMV's skill).
+- A build without Elden Ring has the same game data as the verified build (`data\noer-patches`).
 
 Every individual judgement call is recorded as a `Ruling:` line in `src/NRMerge/Resources/rulings.txt`.

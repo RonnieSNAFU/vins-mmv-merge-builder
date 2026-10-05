@@ -289,9 +289,12 @@ public class BuilderTests : IDisposable
         Journal.Save();
         File.WriteAllText(Path.Combine(Paths.Out, "verify.ok"), "ok");
 
-        Assert.Equal(0, Report.Deliver(new[] { "Task 1: Ruling: test ruling — cost if wrong: none" }, Report.VersionText("9.9.9", new DateTime(2026, 10, 4), eldenRing: false)));
+        Assert.Equal(0, Report.Deliver(new[] { "Task 1: Ruling: test ruling — cost if wrong: none" }, Report.VersionText("9.9.9", new DateTime(2026, 10, 4), eldenRing: false, coopCode: "ABCD-1234")));
         Assert.True(File.Exists(Path.Combine(output, "mod", "chr", "a.bin")));
-        Assert.Contains("WITHOUT Elden Ring", File.ReadAllText(Path.Combine(output, "VERSION.txt")));
+        var version = File.ReadAllText(Path.Combine(output, "VERSION.txt"));
+        Assert.Contains("Built without Elden Ring", version);
+        Assert.Contains("identical", version);
+        Assert.Contains("Co-op code: ABCD-1234", version);
         Assert.Equal("readme", File.ReadAllText(Path.Combine(output, "README.txt")));
         Assert.True(File.Exists(Path.Combine(output, "merge-journal", "no-eldenring.tsv")));
         var report = File.ReadAllText(Path.Combine(output, "MERGE_REPORT.md"));

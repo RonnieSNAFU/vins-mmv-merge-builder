@@ -67,22 +67,28 @@ Elden Ring originals as the common base and the result is identical to the
 tested merge.
 
 Without Elden Ring (or with another Elden Ring version) the builder still
-works, but decisions that needed an Elden Ring original fall back to Elden
-Vins' side or to a merge without a base. We measured the difference on the
-3501 files of the merged mod:
-  - 3407 files identical to the tested merge.
-  - 61 files with the same content but different compression (Elden Ring's
-    Oodle library is not available, so Nightreign's is used).
-  - 33 files with different content: regulation.bin (26 rows added by both
-    mods keep shared IDs instead of being moved), 17 character animation or
-    behaviour binders and 3 weapon parts merged without an Elden Ring base,
-    c0000.anibnd, the 473000 AI script (Elden Vins' version kept, so MMV's
-    changes to it are lost) and 10 files whose MMV references are not
-    re-pointed because those 26 rows were not moved.
-The builder says so at the start and the end, writes it into VERSION.txt, and
-lists every fallback in merge-journal\no-eldenring.tsv. Bug reports from a
-build without Elden Ring may not apply to the tested merge, so please mention
-it when you report a problem.
+produces the same game data. The merge first falls back where it needed an
+Elden Ring original, then replays the tested merge's decisions for those
+files from data\noer-patches. The patches copy from your own Elden Vins, More
+Map Variations and Nightreign files, so they contain almost no data of their
+own. Every replayed file is checked against the tested merge by SHA-256.
+The only remaining difference is compression: Elden Ring's Oodle library is
+not available, so some files are compressed with Nightreign's. The game reads
+the same data, and the co-op code (below) is the same.
+
+
+Playing co-op
+-------------
+Everyone in a co-op group must run the same game data. If one player's data
+differs (another builder version, a hand-edited file), bosses and damage
+desync: health bars that never go down, attacks that hit far harder than
+they should. Each build prints a co-op code at the end and writes it into
+VERSION.txt, for example
+  Co-op code: 3F2A-9C1B
+Compare codes before you start. To check an existing merged mod folder, run
+  NRMerge.exe coop-code "<merged mod folder>"
+Builds made with and without Elden Ring by the same builder version have the
+same code.
 
 
 Downloads during the build

@@ -12,7 +12,7 @@ public static class Report
         ("regulation-tables", "Regulation: lottery tables"), ("ev-rules", "EV rules applied to MMV content"), ("refs", "MMV references re-pointed to moved rows"), ("regulation-pending", "Regulation: deferred collisions (resolved in the player stage)"),
         ("binders", "Binders, effects, menu textures, parts"), ("binders-enemies", "Enemy binders"), ("binders-player", "Player binders"), ("text", "Text (FMG)"), ("models", "Weapon models"), ("events", "Event scripts (EMEVD)"),
         ("maps", "Maps (MSB)"), ("enemies", "Enemies (TAE, behavior, models, sounds)"), ("ai", "Enemy AI scripts"), ("player", "Player (scripts, animations, behavior, behavior judges)"),
-        ("profile", "Profile, DLLs, configs"), ("verify", "Verification"), (ErFallback.Area, "Elden Ring absent: fallbacks (output differs from the verified build)"),
+        ("profile", "Profile, DLLs, configs"), ("verify", "Verification"), (ErFallback.Area, "Elden Ring absent: fallbacks (replayed from the verified build, see noer-patches)"),
     };
 
     public static string Build(string ledgerPath) => Build(File.ReadAllLines(ledgerPath));
@@ -101,11 +101,12 @@ public static class Report
     static readonly string[] Templates = { "README.txt", "Collect Crash Report.bat", "Collect-CrashReport.ps1" };
 
     /// <summary>VERSION.txt of a builder-made delivery.</summary>
-    public static string VersionText(string builderVersion, DateTime built, bool eldenRing) =>
+    public static string VersionText(string builderVersion, DateTime built, bool eldenRing, string coopCode = null) =>
         $"Elden Vins x More Map Variations (merged), built on this PC by the VinsMMV merge builder {builderVersion}\r\n"
         + $"Built {built:yyyy-MM-dd HH:mm}. Inputs: Elden Vins Nightreign + More Map Variations 2.1.8-hotfix3 & Weapons (both checked against the builder's manifests). Game: Nightreign 1.03.5 (regulation 10350000).\r\n"
         + (eldenRing ? "Elden Ring 1.16.1 was used as merge base for the content Elden Vins ports from Elden Ring (same as the verified build).\r\n"
-                     : "Built WITHOUT Elden Ring: Elden-Ring-based merge decisions fell back (EV side / no base), so this output differs from the verified build (see merge-journal\\no-eldenring.tsv).\r\n");
+                     : "Built without Elden Ring: the Elden-Ring-based decisions were replayed from the verified build, so the game data is identical to it (see merge-journal\no-eldenring.tsv).\r\n")
+        + (coopCode == null ? "" : $"Co-op code: {coopCode} (everyone in a co-op group needs the same code; compare before a run).\r\n");
 
     /// <summary>Moves the verified staging tree into the output folder with the profile, report and journals.
     /// The output folder must be empty, except for the build workspace itself when it lies inside it (builder layout

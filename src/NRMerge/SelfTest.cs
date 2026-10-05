@@ -62,7 +62,7 @@ public static class SelfTest
             if (d == null) return "none next to the exe (dev checkout layout)";
             var missing = new[] { "mod-manifest.json", "vanilla-manifest.tsv", "fetch.json", @"smithbox\TAE\TAE.Template.NR.xml",
                 @"smithbox\PARAM\NR\Param Type Info.json", @"smithbox\PARAM\ER\Param Type Info.json", @"andre\EldenRingNightreignDictionary.txt",
-                @"andre\EldenRingDictionary.txt", @"merge\ai\473000_battle.lua.rules.json", @"templates\README.txt" }
+                @"andre\EldenRingDictionary.txt", @"merge\ai\473000_battle.lua.rules.json", @"templates\README.txt", @"noer-patches\index.json" }
                 .Where(f => !File.Exists(Path.Combine(d, f))).ToList();
             if (missing.Count > 0) throw new FileNotFoundException("missing in " + d + ": " + string.Join(", ", missing));
             return d;

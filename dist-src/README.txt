@@ -37,6 +37,12 @@ The custom shard is VINSMMV, so you are matched only with other players running
 this merge. You can change these settings in
 mod\ServerRedirector\cl_server_redirector.ini.
 
+The shard does not check that everyone has the same game data. Compare the
+co-op code in VERSION.txt with your partners before a run: if the codes
+differ, bosses and damage desync (health bars that never go down, attacks that
+hit far harder than they should). Everyone should build with the same builder
+version.
+
 
 Save file
 ---------

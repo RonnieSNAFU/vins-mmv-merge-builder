@@ -69,6 +69,7 @@ Put (Join-Path $here 'README.txt') 'README.txt'
 Put (Join-Path $here 'licenses\GPL-3.0.txt') 'LICENSE.txt'
 Get-ChildItem (Join-Path $here 'licenses') -File | ForEach-Object { Put $_.FullName "licenses\$($_.Name)" }
 foreach ($f in 'mod-manifest.json', 'vanilla-manifest.tsv', 'fetch.json') { Put (Join-Path $Repo "data\$f") "data\$f" }
+Get-ChildItem (Join-Path $Repo 'data\noer-patches') -File | ForEach-Object { Put $_.FullName "data\noer-patches\$($_.Name)" }
 $assets = Join-Path $smithbox 'src\Smithbox.Data\Assets'
 foreach ($g in 'NR', 'ER') {
     foreach ($d in 'Defs', 'Param Meta') {

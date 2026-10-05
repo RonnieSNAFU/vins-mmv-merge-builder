@@ -1,0 +1,632 @@
+{
+  "note": "Deltas from the build without Elden Ring to the verified build (content level); see NoErPatch.cs.",
+  "entries": [
+    {
+      "rel": "action/script/c9997.hks",
+      "op": "patch",
+      "dcx": 1,
+      "pre": "c0ab1b5d06fa11845e776250ab6f67a43e0855f11d75ccd022e296ba43871a5d",
+      "post": "b17b5d568bef2b0b2e2b9b0fb9ddbdf6f680c5d6b9dd53f89f79ef5801cb6000",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "3d584c36ab4c68e53cd84e37866802bc3060e284e8c15ffa32ae18b2d6177d03"
+        },
+        {
+          "root": "mmv",
+          "sha": "c0ab1b5d06fa11845e776250ab6f67a43e0855f11d75ccd022e296ba43871a5d"
+        },
+        {
+          "root": "vanilla",
+          "sha": "19b09e7f6c641048220cd0d01c8b8407cd92648541239d6f7195193bf983845b"
+        }
+      ],
+      "patch": "action_script_c9997.hks.nrpatch",
+      "literal": 21
+    },
+    {
+      "rel": "chr/c0000.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "140fb1aa34f15563dcb7a4efb0bca6773d5a551faa5ba15bd0dc10af78b57c29",
+      "post": "ea4f9c123f5f42c4f31b4f2408e76d069bce102c8f9c4efd287d6f8163ce10c7",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "6ab97ef5d69310c2bf4bba6d8f13306a214e49ff463361fbbde92dd73d34f3cd"
+        },
+        {
+          "root": "mmv",
+          "sha": "f690c3a0a9c2b5abbff648ef6c588bcf592e9f4e7c0b9af5754ee17680d6466c"
+        },
+        {
+          "root": "vanilla",
+          "sha": "40467e7aedf7b098a16a8418055dc2e1ae384ecdf5056ca67a3cefe9edef87a5"
+        }
+      ],
+      "patch": "chr_c0000.anibnd.dcx.nrpatch",
+      "literal": 1168397
+    },
+    {
+      "rel": "chr/c2110.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "553a730ddf38633f8a7a422d8b737f3c707fba7f4981ebb69032fe51fb9b08bc",
+      "post": "90f8aec5bb140b3a8b5a2000f5125512a7dac175d7b6da136c8f4059bcc0d71d",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "4d1dfd5440b594d38f4a7b960ea46e138dea966bf0f29d906da2558568b3d9ea"
+        },
+        {
+          "root": "mmv",
+          "sha": "d8842f2f5a8a588766ae211fc88983f911df5426adb920dcd8f2c463fcd05659"
+        }
+      ],
+      "patch": "chr_c2110.anibnd.dcx.nrpatch",
+      "literal": 192798
+    },
+    {
+      "rel": "chr/c2110.behbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "d15eeeeee3fe5ecb7767c868e644e02458b72f2a18d62a6942216646ddbff7e0",
+      "post": "2c68100ceed9b03ee8c5afbc60c794c404e6e7edc073a3784b5c39ccf3a8ebf8",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "d15eeeeee3fe5ecb7767c868e644e02458b72f2a18d62a6942216646ddbff7e0"
+        },
+        {
+          "root": "mmv",
+          "sha": "2c68100ceed9b03ee8c5afbc60c794c404e6e7edc073a3784b5c39ccf3a8ebf8"
+        }
+      ],
+      "patch": "chr_c2110.behbnd.dcx.nrpatch",
+      "literal": 14
+    },
+    {
+      "rel": "chr/c2120.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "7d1a613dc42e9fbb8009eb9b46078cbc9b7640d21266a2f2168224603c6d76fb",
+      "post": "93e5d36ba177f44dcf977c59b9a329650b834f99b2c4a49e8605e4ca579535f5",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "b2c2da19b279cc38fb0de417101264b702a90bc4312386e7c13f5bcd09d7d336"
+        },
+        {
+          "root": "mmv",
+          "sha": "000aea8bd21763c4eb5a05dee3f41aadee5e5ba735e91aa96af873c606dfb137"
+        }
+      ],
+      "patch": "chr_c2120.anibnd.dcx.nrpatch",
+      "literal": 327095
+    },
+    {
+      "rel": "chr/c2120.chrbnd.dcx",
+      "op": "patch",
+      "dcx": 10,
+      "pre": "6cdc6585e74fd26fb743d4a2ea4b798de96b74a5b7fccc84dd67b85a5db73a59",
+      "post": "9be6c05806a70f6efb6457173f85861f0720f531b9b7114e0b78e5923745fc2c",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "6cdc6585e74fd26fb743d4a2ea4b798de96b74a5b7fccc84dd67b85a5db73a59"
+        },
+        {
+          "root": "mmv",
+          "sha": "a8e57c47182b3621a4b75dc9fa95feac7e17f0f9de23e11f994e75a987de1b77"
+        }
+      ],
+      "patch": "chr_c2120.chrbnd.dcx.nrpatch",
+      "literal": 50
+    },
+    {
+      "rel": "chr/c2190.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "492f32634176936b26ddf06cf016030489a89329e345ff6f5bcc0aa2c5c88ce5",
+      "post": "f10643b288a696a07ab72a848736473b84c8a4a50e1447a025a97991e51b04c9",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "55f2675b9041a0de98ee80af8d9c89a4fffd96b8c271c4909401298666581398"
+        },
+        {
+          "root": "mmv",
+          "sha": "e81cd16d6a79bba3fc67990b4cf11b42b465bc7cba2802b6cbca73a164d51a26"
+        }
+      ],
+      "patch": "chr_c2190.anibnd.dcx.nrpatch",
+      "literal": 104943
+    },
+    {
+      "rel": "chr/c2190.behbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "e5efaab0280f26c3d241725280d230189f94e7b1b61791bb0c250b7e0756385c",
+      "post": "8bac82c7264da9853b4ed2b46b7720b80fc4ff2fa8702fa7232257e873e36df2",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "e5efaab0280f26c3d241725280d230189f94e7b1b61791bb0c250b7e0756385c"
+        },
+        {
+          "root": "mmv",
+          "sha": "8bac82c7264da9853b4ed2b46b7720b80fc4ff2fa8702fa7232257e873e36df2"
+        }
+      ],
+      "patch": "chr_c2190.behbnd.dcx.nrpatch",
+      "literal": 15
+    },
+    {
+      "rel": "chr/c4720.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "16f080e80beeac41102346779b321738d4dfa6a5e30cdbf6b8e76205d13dd308",
+      "post": "625ba330648d95cf3305ebc3d963b5686b059c60f360cc59fa3d49c89d493d4c",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "b4dd15971fbceda440dae7c1e6e3ec917017198ed194d6a907e408dc152c8558"
+        },
+        {
+          "root": "mmv",
+          "sha": "4afd022870e29dd3f7b58aacbf8ab324c943978ff0e7aab4a960822fc9ee6f94"
+        }
+      ],
+      "patch": "chr_c4720.anibnd.dcx.nrpatch",
+      "literal": 36151
+    },
+    {
+      "rel": "chr/c4721.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "56184b0adb9cd3435177e77b73a5f67a994754df587166851f90d313b1c181e7",
+      "post": "0d508b0dbec3ae6efa2ef47decb513db9d6a81e906c003231a9f156503812ae4",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "e8adc9f1ea688b410c1451a4f8beb80c94c34f3641e8f7f3d5f8e1995e659efc"
+        },
+        {
+          "root": "mmv",
+          "sha": "1c28bd2ac4540e7a5e5e0ae0e3dac4c866c7d3e2665bccd7fb08f3ad84af192b"
+        }
+      ],
+      "patch": "chr_c4721.anibnd.dcx.nrpatch",
+      "literal": 91379
+    },
+    {
+      "rel": "chr/c4730.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "236049b2ce424ae0d237fa14aa8ecf6ac929b8de7d3c8e9bde3f5cf04fd063bb",
+      "post": "f9c149c924a97d66a1df8a52129899af13ee668ada7170ced4e2dc6fb7c2b3dd",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "f82de96cce7bb4d6bdb5ac8dbe87582bb7b418ee373ac63f0decee8e68db8ad5"
+        },
+        {
+          "root": "mmv",
+          "sha": "236049b2ce424ae0d237fa14aa8ecf6ac929b8de7d3c8e9bde3f5cf04fd063bb"
+        }
+      ],
+      "patch": "chr_c4730.anibnd.dcx.nrpatch",
+      "literal": 276812
+    },
+    {
+      "rel": "chr/c5000.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "618fd9b3b5f284041166c660150c9b9967a89ddcb094715adaf44d05f5d7d75c",
+      "post": "51378ff34caecd783ff5690caee1adce4cc543b2b17aa348b6f4f36d5cfe8f18",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "97a4059aa385ecdc20f83be8d36d197f9d9220165726b9b4c665953bb34ba7a0"
+        },
+        {
+          "root": "mmv",
+          "sha": "8ea557543a179f4928b7e757fbb4b77995676a39030e46585b79fd7f2077c22c"
+        }
+      ],
+      "patch": "chr_c5000.anibnd.dcx.nrpatch",
+      "literal": 87566
+    },
+    {
+      "rel": "chr/c5000.behbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "97a3f3d4546c5c7dc089fdbd6556e2a7e8ae4cb2ecb02d7b13be66a78a77a4d2",
+      "post": "87873ade0110ff50fdeb22b6b8b1690ac23645afb5740efa52659b32491a215e",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "97a3f3d4546c5c7dc089fdbd6556e2a7e8ae4cb2ecb02d7b13be66a78a77a4d2"
+        },
+        {
+          "root": "mmv",
+          "sha": "87873ade0110ff50fdeb22b6b8b1690ac23645afb5740efa52659b32491a215e"
+        }
+      ],
+      "patch": "chr_c5000.behbnd.dcx.nrpatch",
+      "literal": 14
+    },
+    {
+      "rel": "chr/c5030.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "2fe5062625a387434b720e85e4ac15276e82fcc1016714dc545de74244032614",
+      "post": "0086356f2c27fd173f43c4e492ff5b1ccb5b6e219490447bffffb76caee7f488",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "41610446d18e24af69a8b417483c16cabca2f141ba57b780e22eebb091e75d9c"
+        },
+        {
+          "root": "mmv",
+          "sha": "50c0d0a7ff5d79f7445b82d28a0729f472b3096dcf4fe266a7164bf3c23d9eb1"
+        }
+      ],
+      "patch": "chr_c5030.anibnd.dcx.nrpatch",
+      "literal": 125966
+    },
+    {
+      "rel": "chr/c5051.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "2b307ac93bdf3e3e600a1a8adbf4b79a62ebce7537aac3ee03d5911fff622fdf",
+      "post": "4182d85ec749c119216880e6258dba8185071904a2a143e6093b3d4c33ade0da",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "f3d24a909243d9ee76ba26463e9a51216741a7fd277df189a68bce76c5cf1319"
+        },
+        {
+          "root": "mmv",
+          "sha": "86d6b2849f795c4ba6d288a1f775773071ef5d45204311065b16f31431e5710d"
+        }
+      ],
+      "patch": "chr_c5051.anibnd.dcx.nrpatch",
+      "literal": 90571
+    },
+    {
+      "rel": "chr/c5051.behbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "901d4a8f71bb57b2a588fc03806ca496aac98f295ac32880178e492023b6f9cc",
+      "post": "067ad33f37cf1c9d23cce3912f2aa7f371e8992594165f5048679d1f7af0444d",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "901d4a8f71bb57b2a588fc03806ca496aac98f295ac32880178e492023b6f9cc"
+        },
+        {
+          "root": "mmv",
+          "sha": "067ad33f37cf1c9d23cce3912f2aa7f371e8992594165f5048679d1f7af0444d"
+        }
+      ],
+      "patch": "chr_c5051.behbnd.dcx.nrpatch",
+      "literal": 14
+    },
+    {
+      "rel": "chr/c5230.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "f8e25e60299bc5f206b2783734a0c4d42e9eee536c156401ad3689c3faa8f624",
+      "post": "d0de1897b199f89b754cde54e92c9ae7538bb741b0cd12f83d19a7d593384233",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "6d0f35f53209a85fe3c0555787ee328e98e66699d09eb0047947d69aec2372f7"
+        },
+        {
+          "root": "mmv",
+          "sha": "390177b4108f40f06e0313fbb5e5aabaa7a388398e8ef7378e8ce4beeda145b7"
+        }
+      ],
+      "patch": "chr_c5230.anibnd.dcx.nrpatch",
+      "literal": 84323
+    },
+    {
+      "rel": "chr/c5300.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "481729ff5a9a0cbf0400c444d88791c2b1e17d45e6066df4e36b6d549153aba8",
+      "post": "4d94b735a467f0329ce094f2b7cee5edef60ba99255ad3c8bc3c6f1a6790144a",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "06551cd7f7ad561b45c37884609a359fb1da56f77e8841595b5ba6f328a5de44"
+        },
+        {
+          "root": "mmv",
+          "sha": "76f33b2d468605502d642531e4beb8d057d51834c924e0c25cdad8a539a6770a"
+        }
+      ],
+      "patch": "chr_c5300.anibnd.dcx.nrpatch",
+      "literal": 82483
+    },
+    {
+      "rel": "chr/c5300.behbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "5a31d2375e32a534007c15b6a03a63b737541d78ad21b4fdaf80c42c7827423b",
+      "post": "8ca9fd4f40ffdd40e7771cd4bc5f7be5c64e2cddf939ee29e1771035cb8c8171",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "5a31d2375e32a534007c15b6a03a63b737541d78ad21b4fdaf80c42c7827423b"
+        },
+        {
+          "root": "mmv",
+          "sha": "7ddaefe30a6cba54df1e61a90ff4558d76c5e241bcd59ed336a8d82f8e64c2f1"
+        }
+      ],
+      "patch": "chr_c5300.behbnd.dcx.nrpatch",
+      "literal": 32946
+    },
+    {
+      "rel": "chr/c5400.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "659886644d5bd878dddc1b4147c20d10e19710728af9d5d060cdeade3661b72a",
+      "post": "33aa7350fad5bb9b7bab988b5667c6599c5a0f9395c04e62dd0bace7464bf006",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "659886644d5bd878dddc1b4147c20d10e19710728af9d5d060cdeade3661b72a"
+        }
+      ],
+      "patch": "chr_c5400.anibnd.dcx.nrpatch",
+      "literal": 10769
+    },
+    {
+      "rel": "chr/c5800.anibnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "309916eeeb1d3279db5a068074fa29a018ea60b2396ee94039693a7e3ea91edc",
+      "post": "9eff89a3942e230fd8bcd7074213a39cd34c7295caa0eba6f051e1586f52ff2d",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "1ad46ab31aa66ba3f9472dfbee4251eebb1d1136739f0ecaf2a80c1532f08769"
+        },
+        {
+          "root": "mmv",
+          "sha": "9b8e37e51796f6cfa52a640e720a2e8a83ae9633de4fe65d51306ba66a3f7f67"
+        }
+      ],
+      "patch": "chr_c5800.anibnd.dcx.nrpatch",
+      "literal": 34332
+    },
+    {
+      "rel": "event/common_func.emevd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "26b1c6857e47a0112c072c4f9d7eac8a78dfa90ce5da5353004628acbb9bcf4a",
+      "post": "4f214638ac1427cd7122ee4d66f0dd3bf77582bfe9dda4d1f263c9d822b6fe44",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "858109907b4ef20bb30593a2f1e52c8d7f94d3e7cd37bbf19675cfd1e9dbbaf5"
+        },
+        {
+          "root": "mmv",
+          "sha": "90ae3fb1ea9704345bba09add8c61c503d778c261d3c06d1240136503f99c143"
+        },
+        {
+          "root": "vanilla",
+          "sha": "af4dc84afe74cba49286d48e9ef4c66ff59da8056f68e3454bf078696724ae32"
+        }
+      ],
+      "patch": "event_common_func.emevd.dcx.nrpatch",
+      "literal": 4
+    },
+    {
+      "rel": "event/m49_85_00_00.emevd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "56d533e0bdadf96bbc6191a5de2b60732eb7fbe7659bbefa3fffbed54baa4bd0",
+      "post": "0ea121a6893be8c68ab6d4896d0f89db99f0256a42778b400e81981e310af67a",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "56d533e0bdadf96bbc6191a5de2b60732eb7fbe7659bbefa3fffbed54baa4bd0"
+        }
+      ],
+      "patch": "event_m49_85_00_00.emevd.dcx.nrpatch",
+      "literal": 18
+    },
+    {
+      "rel": "map/mapstudio/m46_40_00_00.msb.dcx",
+      "op": "patch",
+      "dcx": 11,
+      "pre": "afa401b44678d5721db4e027e86fcd094fc6bbb7ae8765b580a1424426409159",
+      "post": "1bb92ea4cff39c407760fcced02acaa2573e218adc6f705f4b125aafac5fbcfa",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "afa401b44678d5721db4e027e86fcd094fc6bbb7ae8765b580a1424426409159"
+        }
+      ],
+      "patch": "map_mapstudio_m46_40_00_00.msb.dcx.nrpatch",
+      "literal": 1
+    },
+    {
+      "rel": "map/mapstudio/m46_62_00_00.msb.dcx",
+      "op": "patch",
+      "dcx": 11,
+      "pre": "db71f4d097f2781863b7abf226c409c4c609d66969fd3cdd9f935032a75ad24f",
+      "post": "5c095dfb4d03a395fac96cc2534c857d783ac23926c8d62c1b8ec77e432f9cc9",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "db71f4d097f2781863b7abf226c409c4c609d66969fd3cdd9f935032a75ad24f"
+        },
+        {
+          "root": "vanilla",
+          "sha": "6d5c0ef48cc4e9e04cbac30e523b03bec8c1067683d4e79dc6e882ddd953026f"
+        }
+      ],
+      "patch": "map_mapstudio_m46_62_00_00.msb.dcx.nrpatch",
+      "literal": 1
+    },
+    {
+      "rel": "parts/wp_a_1572.partsbnd.dcx",
+      "op": "patch",
+      "dcx": 10,
+      "pre": "152e4ede7fdb99f9b049e6755d26074c9d13b78d224219c9b349a51319af3d45",
+      "post": "d546a3751dd4d165689eaf52f97f0e20f0bcff299623eb73fc209483dfef54fc",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "d546a3751dd4d165689eaf52f97f0e20f0bcff299623eb73fc209483dfef54fc"
+        },
+        {
+          "root": "mmv",
+          "sha": "3b78510842383645f01d195fba603581a501a8f3f2b7cdd940ce617d0ee13e4a"
+        }
+      ],
+      "patch": "parts_wp_a_1572.partsbnd.dcx.nrpatch",
+      "literal": 5
+    },
+    {
+      "rel": "parts/wp_a_1671.partsbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "fb665395fe3d9b1def3181453063e128ffb5e64fc063cdf5e3b83cdcec8df517",
+      "post": "edda6e7fe1ebad909027b2ab9c75f02cd91ab8167c6b8d4b37574b7f407176a9",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "edda6e7fe1ebad909027b2ab9c75f02cd91ab8167c6b8d4b37574b7f407176a9"
+        },
+        {
+          "root": "mmv",
+          "sha": "2a2ddec19bc67f5d2dee58c94ed8a28b5b2d5e60b1d41cfa4ef0416c7aad59cb"
+        }
+      ],
+      "patch": "parts_wp_a_1671.partsbnd.dcx.nrpatch",
+      "literal": 1
+    },
+    {
+      "rel": "parts/wp_a_1672.partsbnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "8f3c63a72f87384d0ec0ffac1806a4fc2a139b2e6b3a6afccd334f6633fc5eea",
+      "post": "7fb01b6d4e60fc6a40b7494fc1f6201b050732782c3059c5531d2d23432ebc4a",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "7fb01b6d4e60fc6a40b7494fc1f6201b050732782c3059c5531d2d23432ebc4a"
+        },
+        {
+          "root": "mmv",
+          "sha": "eac46b856550e1c15ec42c40f9abaf92685a9757aac00fba0ff65327edf8df00"
+        }
+      ],
+      "patch": "parts_wp_a_1672.partsbnd.dcx.nrpatch",
+      "literal": 1
+    },
+    {
+      "rel": "regulation.bin",
+      "op": "patch",
+      "dcx": 5,
+      "pre": "7bb47d5498f7b5f08590e8bbbd33aaac46a34789ef1c6687be40a3e0848c7ae1",
+      "post": "a298cf5633c46b0943b7de7c45de2487b8ad801eecddd66a0f4d348a7a671ffe",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "9b8c80193a9a9626452436590ea77635077e2886343ecbab237ce1487e0060a8"
+        },
+        {
+          "root": "mmv",
+          "sha": "6ae52c87b0b4498ea5f0d454ee86304a80391ede87e5809705ecc13bc4f9a9b2"
+        }
+      ],
+      "patch": "regulation.bin.nrpatch",
+      "literal": 1784431
+    },
+    {
+      "rel": "script/212000_battle.luabnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "b7479f79ab65ff1a8fd6e982679a88951b2a1f9c1910224ae8dd8278c3932131",
+      "post": "17d732247bfe5a76f3affffb8a95f5a661b1e4b25f01f5b31ac8a9b30720b4df",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "77547f87752779363a6c8e2be44244fdf3e68c15e752287a3a805a784493607c"
+        },
+        {
+          "root": "mmv",
+          "sha": "b7479f79ab65ff1a8fd6e982679a88951b2a1f9c1910224ae8dd8278c3932131"
+        }
+      ],
+      "patch": "script_212000_battle.luabnd.dcx.nrpatch",
+      "literal": 42
+    },
+    {
+      "rel": "script/305000_battle.luabnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "66f95c54f9cb9d048021c3344ba0622fd47df5156f27451ef4be46d9da4231cd",
+      "post": "335e0fe3d8916fe28c08632ac50ebc2787af1adc5e8f3c524eba394d3bdf0ce2",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "66f95c54f9cb9d048021c3344ba0622fd47df5156f27451ef4be46d9da4231cd"
+        },
+        {
+          "root": "vanilla",
+          "sha": "ab4a3dd79c471b2fd408ff76cd0b959b17f4dbe3136db1311036125df100f5ce"
+        }
+      ],
+      "patch": "script_305000_battle.luabnd.dcx.nrpatch",
+      "literal": 21
+    },
+    {
+      "rel": "script/473000_battle.luabnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "6b5c1fd4d4602ffd6560b24329af33fa53203ec8e7681f7f726c494d3261f1ba",
+      "post": "7780dad7330652efbf341d63fc1077fb7ceb60a6d959e44fa85ec54c0c4101c6",
+      "sources": [
+        {
+          "root": "ev",
+          "sha": "6b5c1fd4d4602ffd6560b24329af33fa53203ec8e7681f7f726c494d3261f1ba"
+        },
+        {
+          "root": "mmv",
+          "sha": "8a555f1c43cd604876402edd66f9b1cbc22dcd6bf5dfc5ecc1d7c138210927a9"
+        }
+      ],
+      "patch": "script_473000_battle.luabnd.dcx.nrpatch",
+      "literal": 3718
+    },
+    {
+      "rel": "script/531020_battle.luabnd.dcx",
+      "op": "patch",
+      "dcx": 12,
+      "pre": "6ed2311910418ef17887089b9c1ec8801b97d3039cac5b274fbdaaaeb27a0593",
+      "post": "6033326b76d1282555e3103671bb47de0d2b80ba034bb923ab998d9c113cd496",
+      "sources": [
+        {
+          "root": "mmv",
+          "sha": "6ed2311910418ef17887089b9c1ec8801b97d3039cac5b274fbdaaaeb27a0593"
+        },
+        {
+          "root": "vanilla",
+          "sha": "b341bfec85cf357efd0b60b75a5ee290f73409334a98ea92812221f4f15b03ae"
+        }
+      ],
+      "patch": "script_531020_battle.luabnd.dcx.nrpatch",
+      "literal": 27
+    }
+  ]
+}

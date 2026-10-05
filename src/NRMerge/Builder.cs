@@ -125,6 +125,7 @@ public static class Builder
         ("playerscripts", "merge player scripts (c0000.hks)", PlayerScripts.Run),
         ("playermerge", "merge player animations and behavior", PlayerMerge.Run),
         ("profile", "write the ME3 profile and natives", Profile.Run),
+        ("noerpatch", "without Elden Ring: replay the verified build's Elden-Ring-based decisions", NoErPatch.Run),
         ("verify", "verify the merged mod", Verify.Run),
     };
 
@@ -253,7 +254,8 @@ public static class Builder
         // 8. Deliver.
         step.Begin("Delivering");
         ErFallback.Save(Journal.Dir);
-        if (Report.Deliver(Report.EmbeddedRulings(), Report.VersionText(Version, DateTime.Now, cfg.ErGame != null)) != 0)
+        var coop = CoopCode.Compute(Paths.OutMod);
+        if (Report.Deliver(Report.EmbeddedRulings(), Report.VersionText(Version, DateTime.Now, cfg.ErGame != null, coop)) != 0)
             throw new BuildException("delivery refused (see above).");
         Directory.SetCurrentDirectory(cfg.OutputDir);
         if (!o.KeepWork)
@@ -267,19 +269,15 @@ public static class Builder
         w.WriteLine($"DONE in {Fmt(total.Elapsed)}. The merged mod is in:");
         w.WriteLine("  " + cfg.OutputDir);
         w.WriteLine($"  Play it with Mod Engine 3: \"{Path.Combine(cfg.OutputDir, Profile.ProfileName)}\"");
-        if (cfg.ErGame == null)
-        {
-            w.WriteLine(ErNotice);
-            w.WriteLine($"      {ErFallback.Entries.Count} fallback decision(s): merge-journal\\{ErFallback.Area}.tsv");
-        }
+        w.WriteLine($"  Co-op code: {coop}  (everyone in a co-op group needs the same code; it is also in VERSION.txt)");
+        if (cfg.ErGame == null) w.WriteLine(ErNotice);
         Finish(cfg, me3, env);
         return 0;
     }
 
     public const string ErNotice =
-        "      NOTE: building WITHOUT Elden Ring. The merge normally uses your Elden Ring install as the base for the content Elden Vins\n" +
-        "      ports from Elden Ring; without it those decisions fall back to Elden Vins' side, so the result DIFFERS from the verified\n" +
-        "      build (bug reports may not apply). Every fallback is listed in merge-journal\\no-eldenring.tsv.";
+        "      NOTE: building without Elden Ring. The decisions that need Elden Ring's originals are replayed from the verified build\n" +
+        "      (data\\noer-patches), so the game data is identical to a build with Elden Ring (same co-op code).";
 
     static T Safe<T>(Func<T> f) where T : class { try { return f(); } catch { return null; } }
 

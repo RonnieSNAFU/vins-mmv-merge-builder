@@ -165,3 +165,45 @@ public class EvRulesCloneTests
         Assert.Equal(50700000, id);
     }
 }
+
+public class EvRulesSkillPoolTests
+{
+    static EvRules.WeaponSkillObs W(string type, int vanilla, int ev) => new(type, vanilla, ev);
+
+    [Fact]
+    public void PoolIsTheTableEvGivesTheDroppableWeaponsOfAType()
+    {
+        var pools = EvRules.DeriveSkillPools(new[]
+        {
+            W("3", 310000010, 999990000), W("3", 320000010, 999990000), W("3", 300000010, 999990000),
+            W("3", -1, -1), W("3", -1, 999990000),                       // fixed-skill weapons do not decide the pool
+            W("51", 410000000, 410000010), W("51", 410000001, 410000010), W("51", 410000002, 410000010),
+            W("57", 570000010, -1), W("57", 570000011, -1), W("57", 570000012, -1), // EV gives catalysts no skill table
+        });
+        Assert.Equal(999990000, pools["3"]);
+        Assert.Equal(410000010, pools["51"]);
+        Assert.False(pools.ContainsKey("57"));
+    }
+
+    [Fact]
+    public void NoPoolWithoutADominantTableOrEnoughWeapons()
+    {
+        var pools = EvRules.DeriveSkillPools(new[]
+        {
+            W("5", 1, 999990000), W("5", 2, 777), W("5", 3, 888), W("5", 4, 999990000),
+            W("7", 1, 999990000), W("7", 2, 999990000),
+        });
+        Assert.Empty(pools);
+    }
+
+    [Theory]
+    [InlineData("3", 999990000)]
+    [InlineData("94", 999990000)] // backhand blades borrow curved swords' pool
+    [InlineData("57", null)]
+    [InlineData("0", null)]
+    public void PoolForUsesTheAnalogTypeForMmvOnlyTypes(string type, int? expected)
+    {
+        var pools = new Dictionary<string, int> { ["3"] = 999990000, ["9"] = 999990000 };
+        Assert.Equal(expected, EvRules.SkillPoolFor(pools, type));
+    }
+}
